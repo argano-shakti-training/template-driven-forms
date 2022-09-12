@@ -1,0 +1,17 @@
+<form>
+  <label>First Name</label>
+  <input type="text" [(ngModel)]="form.fname" name="fname"/>
+  <label>Last Name</label>
+  <input type="text" [(ngModel)]="form.lname"  name="lname"/>
+  <label>Age</label>
+  <input type="number" name="age"/>
+  <label>Languages</label>
+  <input type="checkbox" value="en" name="lang"> English
+  <input type="checkbox" value="tg" name="lang"> Telugu
+  <input type="checkbox" value="hn" name="lang"> Hindi
+  <br/>
+  <label>Password</label>  
+  <input type="password"  name="password"/>
+  <input type="button" (click)="showData()" value="submit"/>
+  <input type="button" (click)="updateData()" value="UpdateData"/>
+</form>
