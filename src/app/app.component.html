@@ -1,17 +1,35 @@
-<form>
-  <label>First Name</label>
-  <input type="text" [(ngModel)]="form.fname" name="fname"/>
+<form #test="ngForm">
+
+  <div>
+    <label>First Name</label>
+  <input type="text" [(ngModel)]="form.fname" name="fname" #name = "ngModel"  />
+  <div *ngIf ="form.fname.length === 0" class="alert alert-danger"> firstName is not entered</div>
+</div>
+<div>
   <label>Last Name</label>
-  <input type="text" [(ngModel)]="form.lname"  name="lname"/>
+  <input type="text" [(ngModel)]="form.lname" #val = "ngModel" name="lname"/>
+  <div *ngIf ="form.lname.length === 0" class="alert alert-danger">last Name is not entered</div>
+</div>
+<div>
   <label>Age</label>
-  <input type="number" name="age"/>
+  <input type="number" [(ngModel)]="form.age" name="age" #age = "ngModel" />
+  <div *ngIf ="form.age < 18 &&  age.touched " class="alert alert-danger">age above 18 is not entered</div>
+</div>
+<div>
   <label>Languages</label>
-  <input type="checkbox" value="en" name="lang"> English
-  <input type="checkbox" value="tg" name="lang"> Telugu
-  <input type="checkbox" value="hn" name="lang"> Hindi
+  <input type="checkbox" value="en" name="lang1" [(ngModel)]="form.lang1" #lang = "ngModel"> English
+  <input type="checkbox" value="tg" name="lang2"  [(ngModel)]="form.lang2" #lang = "ngModel"> Telugu
+  <input type="checkbox" value="hn" name="lang3"  [(ngModel)]="form.lang3" #lang = "ngModel"> Hindi
+  <div *ngIf ="form.lang1 === false && form.lang2 === false && form.lang3 === false && lang.touched " class="alert alert-danger">choose lang</div>
+</div>
   <br/>
+  <div>
   <label>Password</label>  
-  <input type="password"  name="password"/>
-  <input type="button" (click)="showData()" value="submit"/>
+  <input type="password"  [(ngModel)]="form.password"  name="password" #password = "ngModel"/>
+  <div *ngIf ="form.password.length  < 8 && password.touched" class="alert alert-danger">password above 8</div>
+  </div>
+
+  <input type="button" (click)="showData(test)"  value="submit" />
+ 
   <input type="button" (click)="updateData()" value="UpdateData"/>
 </form>
